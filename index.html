@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>Intro to Docker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -31,14 +31,102 @@ class: center, middle
 
 Nick Lang
 
-* @fxdgear
+* [@fxdgear](https://www.twitter.com/fxdgear)
 * https://github.com/fxdgear
 * https://hub.docker.com/u/fxdgear/
 * http://nicklang.com
 
 ---
 
-# Introduction
+# What is Docker
+
+From [docker.com](https://www.docker.com)
+
+> Docker is an open platform for developers and sysadmins to build, ship, and run distributed applications.
+
+What does this mean?
+
+Docker is a *container* utility that allows for bundling your application, and all dependencies in one *binary" file (image) which can be distrbuted to multiple hosts and executed (container).
+
+---
+
+# Container vs Image
+
+There is a subtle different between an "image" and a "container". The container is what gets *run* the image is what gets *pulled*.
+
+You can run multiple containers per host, and they all depend on the same image.
+
+---
+
+# How to use Docker
+
+Getting started with Docker is pretty simple and straight forward.
+
+The easiest example is to just use an ubuntu image to echo something:
+
+```bash
+$ docker run -it ubuntu echo "hello world"
+```
+
+Lets hop into a bash prompt:
+
+
+```bash
+$ docker run -it ubuntu bash
+```
+
+---
+
+# What's going on here?
+
+.center[![sorcery](https://c2.staticflickr.com/8/7009/6650662771_844b9323ba.jpg)]
+
+---
+
+# What's going on here?
+
+So first thing that happened is the docker client
+1. looked for the existance of an image named `ubuntu`, which wasn't found. So
+2. it *pull*ed that image from the docker repository, then
+3. it executed the `run` command on that image and
+4. created a container to execute your command `echo "hello world"`
+
+---
+
+# So a container is just a way to make a virtual machine?
+
+No, well kinda. But not really. A VM is very "thick"
+
+.center[![vm_vs_container](mq2357Mt7.png)]
+
+---
+
+# So what's the difference?
+
+As compared to a container which is much thinner:
+
+.center[![vm_vs_container](mq23kqIF7.png)]
+
+---
+
+# Creating a Dockerfile
+
+A Dockerfile is a way to "construct" an image for reusability.
+
+```
+FROM python:2-onbuild
+CMD [ "python", "hello_world.py" ]
+```
+
+---
+
+
+# Dockerhub
+
+---
+
+# Docker Compose
+
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
