@@ -29,7 +29,7 @@ class: center, middle
 
 # Who Am I?
 
-Nick Lang
+I am Nick Lang and I work at Docker.
 
 * [@fxdgear](https://www.twitter.com/fxdgear)
 * https://github.com/fxdgear
@@ -46,7 +46,7 @@ From [docker.com](https://www.docker.com)
 
 What does this mean?
 
-Docker is a *container* utility that allows for bundling your application, and all dependencies in one *binary" file (image) which can be distrbuted to multiple hosts and executed (container).
+Docker is a *container* utility that allows for bundling your application, and all dependencies in one "binary" file (image) which can be distrbuted to multiple hosts and executed (container).
 
 ---
 
@@ -125,6 +125,31 @@ No, well kinda. But not really. A VM is very "thick"
 As compared to a container which is much thinner:
 
 .center[![vm_vs_container](mq23kqIF7.png)]
+
+---
+
+# Look at containers
+
+```bash
+docker ps
+```
+
+There's nothing here...
+
+Lets run the bash command again, AND open a new terminal, and run `docker ps`
+
+`ps` will show us all running contaienrs
+`ps -a` will show us running and non running containers
+
+---
+
+# Logs
+
+Using the `logs` command is a great way to view what happened to a container, and why it's not running or failed to start.
+
+```bash
+$ docker logs <container_id>
+```
 
 ---
 
