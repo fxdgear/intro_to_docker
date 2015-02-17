@@ -58,6 +58,25 @@ You can run multiple containers per host, and they all depend on the same image.
 
 ---
 
+# Installing Docker
+
+Docker runs nativly on __most__ linux variants.
+
+To run docker on a Mac or Windows you'll have to install *boot2docker*.
+
+Installation instructions can be found here: https://docs.docker.com/installation/
+
+For those on a Mac and have homebrew installed you can also run:
+
+```bash
+$ brew update
+$ brew install boot2docker
+```
+
+Once you've installed docker you can test if it's working by running `docker version`
+
+---
+
 # How to use Docker
 
 Getting started with Docker is pretty simple and straight forward.
@@ -79,7 +98,7 @@ $ docker run -it ubuntu bash
 
 # What's going on here?
 
-.center[![sorcery](https://c2.staticflickr.com/8/7009/6650662771_844b9323ba.jpg)]
+.center[![sorcery](sorcery.jpg)]
 
 ---
 
@@ -118,14 +137,84 @@ FROM python:2-onbuild
 CMD [ "python", "hello_world.py" ]
 ```
 
+Code [sample](https://github.com/fxdgear/intro_to_docker/tree/master/examples/hello_world)
+
 ---
 
-
 # Dockerhub
+
+You've probably heard of Github.
+
+Dockerhub is to Docker as Github is to Git.
+
+Dockerhub allows you to
+
+* store your images
+* tag your images
+* share your images
+* hide (private) your images
+* distribute your images
+
+You can follow, star, keep up to date with images that you like or are interested in.
+
+---
+
+# Automated Builds
+
+You can also setup "automated builds", so that when you push code to github, dockerhub will automatically build your image for you.
+
+---
+
+# Sign Up for an Account
+
+You can sign up for a Dockerhub account at https://hub.docker.com
+
+After you've created your DockerHub account you'll need to run `docker login` on the command line.
+
+This will save your identity to the Docker client.
+
+This will allow you to pull/push repos that you have permission to access (ie yours or other private repos).
+
 
 ---
 
 # Docker Compose
+
+Docker-Compose (formerlly known as Fig) is the way to orchestrate and compose your docker containers to work together.
+
+Say you have a python web app, that uses Redis, Postgres, RabbitMQ.
+
+In the traditional VM world you could (or would) install Postgres, RabbitMQ, Redis, Python and all your other dependencies into your VM and call it good.
+Then configure your app to communicate to `localhost` or what ever. This is pretty good for doing local development cause you don't need a distributed system for local dev.
+
+Then when it comes to deploying your application you're going to have to setup everything again, in a new VM running on `<instert your favorite VPS service>`
+
+More docs at http://fig.sh
+
+---
+
+# Why Compose
+
+Compose makes it extremly simple to setup an environment that runs the same exact code, same exact dependencies that you'd have in production.
+
+---
+
+# Example
+
+(Stolen from https://fig.sh)
+
+```yml
+web:
+  build: .
+  command: python app.py
+  links:
+   - db
+  ports:
+   - "8000:8000"
+db:
+  image: postgres
+```
+
 
 
     </textarea>
